@@ -1,1 +1,85 @@
-this is the first git file in linux
+Overview
+
+Architecture
+The Diagnose project will use Django as the web framework, below is the Django architecture:
+
+ 
+
+1.	The URL dispatcher (urls.py) maps the requested URL to a view function and calls it. If catching is enabled, the view function can check to see if a cached version of the page exists and bypass all further steps, returning the cached version, instead, Note that this page-level caching is only one available caching option in Django. You can cache more granularly, as well.
+2.	The view function (usually in views.py) performs the requested action, which typically involves reading or writing to the database. It may include other tasks, as well.
+3.	The model (usually in models.py) defines the data in Python and interacts with it, although typically contained in a relational database (MySQL in diagnose project), other data storage mechanisms are possible as well (XMl, text files, LDAP, etc.).
+4.	After performing any requested tasks, the view returns an HTTP response object (usually after passing the data through a template) to the web browser. Optionally, the view can save a version of the HTTP response object in the caching system for a specified length of time.
+5.	Templates typically return HTML pages. The Django template language offers HTML authors a simple-to-learn syntax while providing all the power needed for presentation logic.
+
+Performance
+This module will show the system performance statics
+Critical resource display
+Data structure: 
+Thanks to SDM measurement table SDM_MEAS_LOAD_STATION_HSS as original data, below info are stored in DB:
+Table: SDM_MEAS_LOAD_STATION_HSS
+FEName	Day	Time	MsgClass	Blade	Duration	STATION_ID	ACTIVE_IN_AO_NUM	ROLLBACK_ACTIVE_JOBNUM	　	　
+Note:
+FEName -> NodeName
+Remove MsgClass, Blade
+UI
+Time selection: duration or point
+Resource selection: single or multiple resource 
+Blade selection: single or multiple blades
+Output: 
+CPU usage per process
+Data structure: 
+Thanks to mCAS measurement table MS_PROCESS_MEAS as original data, below info are stored in DB:
+Table: MS_PROCESS_MEAS
+Node	Day	Time	Blade	Process	CPU
+UI
+Time selection: duration or point
+Blade selection: single or multiple blades
+
+Trouble shooting
+This module will provide a simple troubleshooting feature:
+Solution
+Search PRID/PUID in Description and return all lines containing this sub info
+Data structure: 
+NodeName	Day	Time	MsgClass	Blade	Title	Description	Log ID
+UI
+User input: sub info(PUID/PRID)
+Message type: MAR, SAR, UDR…
+Timeslot: duration
+Abnormal logs
+This module will show the histogram of log ID stored in DB, such as top 10 error types.
+Solution
+Fetch all record in a period and Sort by LogID, then display it using histogram. 
+UI
+Timeslot: duration
+Timeslot: duration
+Number: digit
+
+Utils
+sdm_dmt_parser.py
+This script is used to generate table schema
+Input: /vob/sdm_mcas/src/utils/meas/SDM.dmt
+Output: models.py
+
+class SDM_MEAS_LOAD_STATION_HSS(models.Model):
+    FEName = models.TextField(blank = True, null = True)
+    Day = models.DateField()
+    Time = models.TimeField()
+    MsgClass = models.TextField(blank = True, null = True)
+    Blade = models.TextField(blank = True, null = True)
+    Duration = models.TextField(blank = True, null = True)
+    STATION_ID = models.TextField(blank = True, null = True)
+    PROCESS_NAME = models.TextField(blank = True, null = True)
+    ACTIVE_IN_AO_NUM = models.TextField(blank = True, null = True)
+    ACTIVE_IN_AO_NUM_MEAN = models.TextField(blank = True, null = True)
+
+omlog_parser.py
+This script is used to parse OMlog and IMSRTlog etc.
+Input: OMlog and IMSRTLog files
+Output: txt files
+
+meas_parser.py
+this script is used to parse meas logs.
+Input: measlog* files
+Output: txt files
+
+
