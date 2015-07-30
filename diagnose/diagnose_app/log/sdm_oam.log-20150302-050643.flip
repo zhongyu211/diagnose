@@ -1,0 +1,20 @@
+12/08/2013 06:27:26.105 | sdm_oam (5373) | SYS | INT | DBG | TRACE_FILE= INT,0xfe:/var/local/nectar/log/gdmi.trace
+12/08/2013 06:27:26.105 | sdm_oam (5373) | SYS | INT | DBG | Framework::init : TRACE_ENABLE not found or false : traces are disabled.
+28/08/2013 12:18:01.961 | GATE(21.2.1) (6778) | SYS | INT | FIL | MsgBasicStream::syncError : Out of sync : (06) <1> mode()=0x7
+(06) <1>
+-->  _readIdx=1
+(14)(9b)(04)(00)(00)(05)(00)(00)(00)(01)(1f)(00)(00)(00) <14>
+
+28/08/2013 12:18:01.961 | GATE(21.2.1) (6778) | SYS | INT | FIL | ClusterGatx66readHandler MsgBasicStreamx1328xception : MsgBasicStream::syncError : Out of sync : (06) <1>
+29/08/2013 02:17:09.559 | GATE(12.2.1) (24209) | SYS | INT | FIL | MsgBasicStream::syncError : Out of sync : (06) <1> mode()=0x7
+(06) <1>
+-->  _readIdx=1
+(14)j(07)(00)(00)(05)(00)(00)(00)(01)(1f)(00)(00)(00) <14>
+
+29/08/2013 02:17:09.559 | GATE(12.2.1) (24209) | SYS | INT | FIL | ClusterGatx66readHandler MsgBasicStreamx1328xception : MsgBasicStream::syncError : Out of sync : (06) <1>
+29/08/2013 02:29:50.163 | GATE(12.2.1) (9231) | SYS | INT | FIL | MsgBasicStream::syncError : Out of sync : (06) <1> mode()=0x7
+(06) <1>
+-->  _readIdx=1
+(14)(84)(07)(00)(00)(05)(00)(00)(00)(01)(1f)(00)(00)(00) <14>
+
+29/08/2013 02:29:50.163 | GATE(12.2.1) (9231) | SYS | INT | FIL | ClusterGatx66readHandler MsgBasicStreamx1328xception : MsgBasicStream::syncError : Out of sync : (06) <1>
